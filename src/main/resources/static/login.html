@@ -5,44 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login SSM</title>
-    <link rel="icon" href="./public/images/logo5.PNG" />
-
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="icon" href="./images/logo5.PNG" />
+    <script src="./js/login/login.js"></script>
+    <link rel="stylesheet" href="./css/main.css" />
 
 </head>
 
 <body>
-    <div id="header" >
+    <div id="header">
 
         <!-- Image and text -->
         <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="./index.html">
             <img
-              src="./public/images/logo4.PNG"
+              src="./images/logo4.PNG"
               width="160"
               class="d-inline-block align-top"
               alt=""
             />
           </a>
         </nav>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
+      </div>   
       <!--FORMULÁRIO DE-->
         <a class="links" id="paracadastro"></a>
-        <a class="links" id="paralogin"></a>
+        <a class="links" id="paralogin"></a>       
         
+
         <div class="content">      
           <!--FORMULÁRIO DE LOGIN-->
-          <div id="login">
-            <form method="post" action=""> 
-              <h1>Login</h1> 
-              <p> 
-                <label for="email_login">Seu e-mail</label>
-                <input id="email_login" name="email_login" required="required" type="text" placeholder="contato@htmlecsspro.com"/>
-              </p>
+        
+          <div id="login">              
+            <form method="post" action="" id="formEntrar" onsubmit="entrar()"> 
+              <h1>Login</h1>             
               <p> 
                 <label for="email_login">Seu e-mail</label>
                 <input id="email_login" name="email_login" required="required" type="text" placeholder="contato@htmlecsspro.com"/>
@@ -50,15 +44,13 @@
               <p> 
                 <label for="senha_login">Sua senha</label>
                 <input id="senha_login" name="senha_login" required="required" type="password" placeholder="1234" /> 
-              </p>
-              
+              </p>              
               <p> 
                 <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
                 <label for="manterlogado">Manter-me logado</label>
-              </p>
-              
+              </p>              
               <p> 
-                <input type="submit" value="Logar" /> 
+                <input type="submit" value="Logar"/> 
               </p>
               
               <p class="link">
@@ -70,7 +62,7 @@
     
           <!--FORMULÁRIO DE CADASTRO-->
           <div id="cadastro">
-            <form method="post" action=""> 
+            <form method="post" action="" id="formLogin" onsubmit="cadastrarLogin()"> 
               <h1>Cadastro</h1> 
               
               <p> 
@@ -79,22 +71,22 @@
               </p>
               
               <p> 
-                <label for="nome_cad">CPF:</label>
+                <label for="cpf_cad">CPF:</label>
                 <input
-                      id="prependedtext"
-                      name="prependedtext"
+                      id="cpf_cad"
+                      name="cpf_cad"
                       class="form-control"
-                      placeholder="XX XXXXX-XXXX"
-                      required=""
+                      placeholder="###.###.#####-####"
+                      required="required"
                       type="text"
-                      maxlength="13"
-                      pattern="\[0-9]{3}\ [0-9]{3}-[0-9]{2}$"
+                      maxlength="14"
+                      pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
                       OnKeyPress="formatar('## #####-####', this)"
                     />
               </p>
 
-              <label for="nome_cad">Cartão do SUS:</label>
-                <input id="nome_cad" name="nome_cad" required="required" type="text" id="CPF" name="CPF"placeholder="Digite o numero do cartão do SUS" />
+              <label for="cartao_cad">Cartão do SUS:</label>
+                <input id="cartao_cad" name="cartao_cad" required="required" type="text" placeholder="Digite o numero do cartão do SUS" />
               </p>
 
               <p> 
@@ -103,8 +95,8 @@
               </p>
               
               <p> 
-                <label for="email_cad">Confirme o  e-mail:</label>
-                <input id="email_cad" name="email_cad" required="required" type="email" placeholder="contato@htmlecsspro.com"/> 
+                <label for="emailConfirmacao_cad">Confirme o  e-mail:</label>
+                <input id="emailConfirmacao_cad" name="emailConfirmacao_cad" required="required" type="email" placeholder="contato@htmlecsspro.com"/> 
               </p>
 
               <p> 
@@ -113,8 +105,8 @@
               </p>
               
               <p> 
-                <label for="senha_cad">Confirme sua senha:</label>
-                <input id="senha_cad" name="senha_cad" required="required" type="password" placeholder="1234"/>
+                <label for="senhaConfirmacao_cad">Confirme sua senha:</label>
+                <input id="senhaConfirmacao_cad" name="senhaConfirmacao_cad" required="required" type="password" placeholder="1234"/>
               </p>
 
               <p> 
@@ -125,19 +117,10 @@
                 Já tem conta?
                 <a href="#paralogin"> Ir para Login </a>
               </p>
-            </form>
+          
+            </form>         
           </div>
         </div>
-      </div>  
-  <main>
-    
-  </main>
- 
- 
-  <!--Scripts-->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
-    integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
-    crossorigin="anonymous"></script>
-  <script src="js/bootstrap.min.js"></script>
+      </div> 
 </body>
 </html>

@@ -1,0 +1,52 @@
+#page-landing {
+  background: #1695f6;
+
+  text-align: center;
+  min-height: 100vh;
+
+  display: flex;
+}
+#container {
+  margin:30 auto;
+  width: min(90%, 112rem);
+}
+.location h1 visit p {
+  height: 16vh;
+}
+
+.visit a {
+  width: 8rem;
+  height: 8rem;
+  background: yellowgreen;
+
+  border: none;
+  border-radius: 3rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto;
+}
+
+@media (min-width: 760px) {
+  header {
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+  }
+  .location, h1, visit p {
+    height: initial;
+    text-align: initial;
+    margin: initial;
+
+  }
+  .location{
+    text-align: center;
+  }
+  main{
+    opacity: 20%;
+  }
+}
+
+
