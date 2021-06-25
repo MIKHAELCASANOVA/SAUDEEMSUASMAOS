@@ -16,7 +16,7 @@ Content-Type: application/json
   "Email": "Teste@1"
 }
 
-GET http://localhost:9090/usuario/obterTodos
+GET http://localhost:8080/usuario/obter/1
 GET http://localhost:8080/usuario/obter/2
 
 PUT http://localhost:8080/usuario/atualizar/1

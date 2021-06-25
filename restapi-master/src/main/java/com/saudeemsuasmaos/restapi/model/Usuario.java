@@ -1,4 +1,6 @@
 package com.saudeemsuasmaos.restapi.model;
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -20,28 +22,23 @@ public class Usuario {
     private String Nome;
     private long Cpf;
     private long Rg;
-    private long Prontuario_Sus;
+    private long NumeroSus;   
     private String Endereco;
     private String Geneno;
-    private String DataNascimento;
+    private Date DataNascimento;
     private String NomeMae;
     private String Telefone;
     private String Email;
+    private String Tipo;
+
+  
     private String Senha;
-
-    public String getSenha() {
-        return this.Senha;
-    }
-
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
-    }
-
-@Tolerate
-public Usuario(){
     
-}
-    
+
+    @Tolerate
+    public Usuario(){
+        
+    }    
 
     public long getId() {
         return this.Id;
@@ -75,13 +72,23 @@ public Usuario(){
         this.Rg = Rg;
     }
 
-    public long getProntuario_Sus() {
-        return this.Prontuario_Sus;
+    public long getNumeroSus() {
+        return this.NumeroSus;
     }
 
-    public void setProntuario_Sus(long Prontuario_Sus) {
-        this.Prontuario_Sus = Prontuario_Sus;
+    public void setNumeroSus(long numeroSus) {
+        this.NumeroSus = numeroSus;
     }
+
+
+    public String getTipo() {
+        return this.Tipo;
+    }
+
+    public void setTipo(String Tipo) {
+        this.Tipo = Tipo;
+    }
+
 
     public String getEndereco() {
         return this.Endereco;
@@ -99,11 +106,11 @@ public Usuario(){
         this.Geneno = Geneno;
     }
 
-    public String getDataNascimento() {
+    public Date getDataNascimento() {
         return this.DataNascimento;
     }
 
-    public void setDataNascimento(String DataNascimento) {
+    public void setDataNascimento(Date DataNascimento) {
         this.DataNascimento = DataNascimento;
     }
 
@@ -129,6 +136,14 @@ public Usuario(){
 
     public void setEmail(String Email) {
         this.Email = Email;
+    }
+
+    public String getSenha() {
+        return this.Senha;
+    }
+
+    public void setSenha(String Senha) {
+        this.Senha = Senha;
     }
  
 }

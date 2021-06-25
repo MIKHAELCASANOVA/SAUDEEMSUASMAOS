@@ -10,7 +10,7 @@ function executaGet(url,dados){
 }
 function executaPost(url,dados){
 
-    let obterListaLogin = executaGet('http://localhost:9090/login/obterTodos',dados);
+    let obterListaLogin = executaGet('http://localhost:9090/usuario/obterTodos',dados);
 
 
     let request = new XMLHttpRequest();
@@ -18,9 +18,15 @@ function executaPost(url,dados){
    request.setRequestHeader("Content-Type","application/json");
    request.send(JSON.stringify(dados));
   
-   request.onload = function(){                 
-        alert("Usuario cadastrado!")
-        limparformulario();            
+   request.onload = function(){  
+    var data=request.responseText;
+    var jsonResponse = JSON.parse(data);
+    console.log(jsonResponse["Data"]);
+        alert("Usuario "+jsonResponse["nome"]+" cadastrado!")
+        limparformulario();   
+               
+       
+        sessionStorage.setItem("usuarioLogado", "usuarioLogado");
    } 
 
     return request.responseText;
@@ -33,18 +39,26 @@ function limparformulario(){
     document.getElementById('emailConfirmacao_cad').value = "";
     document.getElementById('senha_cad').value = "";
     document.getElementById('senhaConfirmacao_cad').value = "";
+    document.getElementById('rg_cad').value = "";
+    document.getElementById('endereco_cad').value = "";
+    document.getElementById('nascimento_cad').value = "";
+    document.getElementById('nomemae_cad').value = "";
+    document.getElementById('telefone_cad').value = "";
+    document.getElementById('genero').selectedIndex = 0; 
+    document.getElementById('tipo').selectedIndex = 0; 
+
 }
 
 function entrar(){
     event.preventDefault();
-    var email = document.getElementById('email_login').value;
-    var senha = document.getElementById('senha_login').value;
+    let email = document.getElementById('email_login').value;
+    let senha = document.getElementById('senha_login').value;
     dados = {      
         "email": email,
         "senha":senha
     }; 
 
-    let response = executaGet('http://localhost:9090/login/obterTodos',dados);
+    let response = executaGet('http://localhost:9090/usuario/obterTodos',dados);
 
     let jsonResponse = JSON.parse(response); 
     
@@ -65,13 +79,21 @@ function entrar(){
  
 function cadastrarLogin(){
     event.preventDefault(); 
-    var nome = document.getElementById('nome_cad').value;
-    var cpf = document.getElementById('cpf_cad').value;
-    var numerosus = document.getElementById('cartao_cad').value;
-    var email = document.getElementById('email_cad').value;
-    var emailConfirmacao = document.getElementById('emailConfirmacao_cad').value;
-    var senha = document.getElementById('senha_cad').value;
-    var senhaConfirmacao = document.getElementById('senhaConfirmacao_cad').value;
+    let tipo = document.getElementById('tipo').value;
+
+    let nome = document.getElementById('nome_cad').value;
+    let cpf = document.getElementById('cpf_cad').value;
+    let rg = document.getElementById('rg_cad').value;
+    let numerosus = document.getElementById('cartao_cad').value;
+    let endereco = document.getElementById('endereco_cad').value;
+    let datanascimento = document.getElementById('nascimento_cad').value;
+    let nomemae = document.getElementById('nomemae_cad').value;
+    let email = document.getElementById('email_cad').value;
+    let telefone = document.getElementById('telefone_cad').value;
+    let emailConfirmacao = document.getElementById('emailConfirmacao_cad').value;
+    let genero = document.getElementById('genero').value;    
+    let senha = document.getElementById('senha_cad').value;
+    let senhaConfirmacao = document.getElementById('senhaConfirmacao_cad').value;
    
     if(email != emailConfirmacao){
         alert("E-mail não confere com o E-mail de confirmação");
@@ -87,36 +109,59 @@ function cadastrarLogin(){
         "email": email,
         "cpf":cpf
     }; 
-    let obterListaLogin = executaGet('http://localhost:9090/login/obterTodos',login);
+    let obterListaLogin = executaGet('http://localhost:9090/usuario/obterTodos',login);
 
 
     let retorno = JSON.parse(obterListaLogin); 
    
     let existeUsuario = false;
+
+    let par = "";
  
     retorno.forEach(element => {  
-        if(element.email == login.email && element.cpf == login.cpf){
+        if(element.cpf == login.cpf){
             existeUsuario = true;
+            par = "Cpf";
+        }
+        else if(element.email == login.email && element.cpf == login.cpf){
+            existeUsuario = true;
+            par =" E-mail";
         }
     });
    
     if(existeUsuario){
-       alert("Usuario cadastrado no sistema!")
+       alert("Usuario com "+par+" cadastrado no sistema!")
     }else{
 
         dados = {       
-            "nome": nome,
-            "email": email,
+            "nome":nome,
             "cpf":cpf,
+            "rg":rg, 
             "numerosus": numerosus,
-            "senha": senha
+            "endereco":endereco,
+            "genero": genero,
+            "datanascimento":datanascimento,
+            "nomemae": nomemae,
+            "telefone":telefone,
+            "email":email,
+            "tipo": tipo,
+            "senha":senha
         };    
     
-        executaPost('http://localhost:9090/login/inserir',dados);    
+        executaPost('http://localhost:9090/usuario/inserir',dados);    
     }
-
-    
-  
+}
+function somenteNumeros(e) {
+    var charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace   
+    // charCode 9 = tab
+    if (charCode != 8 && charCode != 9) {
+        // charCode 48 equivale a 0   
+        // charCode 57 equivale a 9
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
 }
 
  

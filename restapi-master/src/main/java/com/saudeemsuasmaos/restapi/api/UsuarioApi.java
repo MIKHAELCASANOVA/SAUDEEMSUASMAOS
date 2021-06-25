@@ -7,7 +7,6 @@ import com.saudeemsuasmaos.restapi.repository.UsuarioRepositorio;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +25,7 @@ public class UsuarioApi {
     private UsuarioRepositorio usuarioRepositorio;      
     
     @PostMapping("/inserir")
-    public Usuario inserir(@RequestBody Usuario usuario) {
-      //usuario.setNome("Leandro");
+    public Usuario inserir(@RequestBody Usuario usuario) {      
       this.usuarioRepositorio.save(usuario);
       return usuario;
     }
@@ -45,12 +43,21 @@ public class UsuarioApi {
     public Usuario update(@PathVariable("id") long id, @RequestBody Usuario usuario) {
       Optional<Usuario> gOpt = this.usuarioRepositorio.findById(id);
       if(gOpt.isPresent()){
-        Usuario gToEdit = gOpt.get();
-        gToEdit.setNome(usuario.getNome());
-        gToEdit.setCpf(usuario.getCpf());
-        gToEdit.setEmail(usuario.getEmail());
-        this.usuarioRepositorio.save(gToEdit);
-        return gToEdit;
+        Usuario usuarioAlterar = gOpt.get();
+        usuarioAlterar.setNome(usuario.getNome());
+        usuarioAlterar.setCpf(usuario.getCpf());
+        usuarioAlterar.setRg(usuario.getRg());
+        usuarioAlterar.setEmail(usuario.getEmail());
+        usuarioAlterar.setNumeroSus(usuario.getNumeroSus());
+        usuarioAlterar.setEndereco(usuario.getEndereco());
+        usuarioAlterar.setGeneno(usuario.getGeneno());
+        usuarioAlterar.setDataNascimento(usuario.getDataNascimento());
+        usuarioAlterar.setNomeMae(usuario.getNomeMae());
+        usuarioAlterar.setTelefone(usuario.getTelefone());
+        usuarioAlterar.setTipo(usuario.getTipo());
+        
+        this.usuarioRepositorio.save(usuarioAlterar);
+        return usuarioAlterar;
       }
       return null;
     }

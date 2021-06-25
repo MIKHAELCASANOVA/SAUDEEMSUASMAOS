@@ -20,7 +20,7 @@ public class RestapiApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry
 					.addMapping("/**")
-					.allowedOrigins("http://localhost:8080") //angular default port
+					.allowedOrigins("http://localhost:8080","*") //angular default port
 					.allowedMethods("GET","POST","PUT","DELETE");
 			}
 		};

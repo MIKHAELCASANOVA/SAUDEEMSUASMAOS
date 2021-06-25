@@ -64,7 +64,15 @@
           <div id="cadastro">
             <form method="post" action="" id="formLogin" onsubmit="cadastrarLogin()"> 
               <h1>Cadastro</h1> 
-              
+             
+              <p> 
+              <select class="form-select"  id="tipo" name="tipo">
+                <option selected>Perfil do Usuário</option>               
+                <option value="1">Paciente</option>
+                <option value="2">Funcionário</option>
+                <option value="3">Ambos</option>
+              </select>
+            </p>
               <p> 
                 <label for="nome_cad">Seu nome completo:</label>
                 <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Luiz Augusto" />
@@ -72,23 +80,51 @@
               
               <p> 
                 <label for="cpf_cad">CPF:</label>
-                <input
-                      id="cpf_cad"
-                      name="cpf_cad"
-                      class="form-control"
-                      placeholder="###.###.#####-####"
-                      required="required"
-                      type="text"
-                      maxlength="14"
-                      pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
-                      OnKeyPress="formatar('## #####-####', this)"
-                    />
+                <input id="cpf_cad" name="cpf_cad" class="form-control" placeholder="###.###.#####-####"
+                      required="required"  type="text" maxlength="14"
+                      onkeypress="return somenteNumeros(event)" />
               </p>
 
+              <p>
+                <label for="rg_cad">Nº RG:</label>
+                  <input id="rg_cad" name="rg_cad" required="required" type="text" placeholder="Digite o numero do RG" onkeypress="return somenteNumeros(event)"/>
+                </p>
+  
+              <p>
               <label for="cartao_cad">Cartão do SUS:</label>
                 <input id="cartao_cad" name="cartao_cad" required="required" type="text" placeholder="Digite o numero do cartão do SUS" />
               </p>
 
+              <p> 
+                <label for="endereco_cad">Endereço:</label>
+                <input id="endereco_cad" name="endereco_cad" required="required" type="text"/> 
+              </p>
+
+              
+              <p> 
+                <label for="nascimento_cad">Data Nascimento:</label>
+                <input id="nascimento_cad" name="nascimento_cad" required="required" type="date"/> 
+              </p>
+
+              <p> 
+                <select class="form-select"  id="genero" name="genero">
+                  <option selected>Genero</option>               
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </p>
+
+              <p> 
+                <label for="nomemae_cad">Nome da Mãe:</label>
+                <input id="nomemae_cad" name="nomemae_cad" required="required" type="text"/> 
+              </p>
+
+              <p> 
+                <label for="telefone_cad">Telefone:</label>
+                <input id="telefone_cad" name="telefone_cad" required="required" type="text" placeholder="(##)####-####"/> 
+              </p>
+              
               <p> 
                 <label for="email_cad">Seu e-mail:</label>
                 <input id="email_cad" name="email_cad" required="required" type="email" placeholder="contato@htmlecsspro.com"/> 
