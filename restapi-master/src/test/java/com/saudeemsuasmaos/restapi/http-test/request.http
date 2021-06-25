@@ -1,0 +1,33 @@
+POST http://localhost:9090/usuario/inserir
+Content-Type: application/json
+
+{
+    "Id": 1,
+  "Nome": "Teste"
+ 
+}
+
+POST http://localhost:8080/usuario/inserir
+Content-Type: application/json
+
+{
+  "Nome": "Teste1",
+  "Cpf": 0007798022,
+  "Email": "Teste@1"
+}
+
+GET http://localhost:9090/usuario/obterTodos
+GET http://localhost:8080/usuario/obter/2
+
+PUT http://localhost:8080/usuario/atualizar/1
+Content-Type: application/json
+
+{
+  "Nome": "Teste200",
+  "Cpf": 00022,
+  "Email": "@1"
+}
+
+GET http://localhost:8080/usuario/obterTodos
+
+DELETE http://localhost:8080/usuario/deletar/1
